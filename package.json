@@ -1,10 +1,12 @@
 {
   "name": "bio-sim",
   "version": "0.0.1",
-  "description": "An HTML5 ALife simulator, with procedural terrain, weather, and other fun stuff.",
+  "description": "An HTML5 artificial life simulator, with procedural terrain, weather, and other fun stuff.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test:ci",
+    "tdd": "gulp test",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
   "homepage": "https://github.com/JimmyBoh/bio-sim#readme",
   "devDependencies": {
     "ava": "^0.14.0",
+    "del": "^2.2.0",
     "gulp": "^3.9.1",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"
