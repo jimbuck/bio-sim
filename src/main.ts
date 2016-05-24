@@ -1,4 +1,4 @@
 import { bootstrap }    from '@angular/platform-browser-dynamic';
-import { BioSimComponent } from './bio-sim.component';
+import { BioSimApp } from './bio-sim.app';
 
-bootstrap(BioSimComponent);
+bootstrap(BioSimApp);
