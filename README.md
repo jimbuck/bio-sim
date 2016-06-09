@@ -27,7 +27,7 @@ Currently in progress! Check back soon!
  - [`Phaser`](https://github.com/photonstorm/phaser) - Rendering and event loop
  - [`Angular 2`](https://github.com/angular/angular) - Main UI management
  - [`AVA`](https://github.com/avajs/ava) - Testing framework
- - [`electron-boilerplate`](https://github.com/szwacz/electron-boilerplate) - Desktop framework
+ - [`electron-boilerplate`](https://github.com/szwacz/electron-boilerplate) - Desktop framework?
 
 ## Contributing
 
