@@ -21,6 +21,13 @@ class Tasks {
     return shell.task(`tsc`);
   }
 
+  static copyBootstrapContent() {
+    return gulp.src([
+      paths.node_modules('bootstrap/dist/**/*')
+    ])
+      .pipe(gulp.dest(paths.dist('lib/bootstrap')));
+  }
+
   static compileLess() {
     return gulp.src(paths.src('**/*.less'))
       .pipe(sourcemaps.init())  
@@ -78,13 +85,13 @@ Everything you need to know:
   }
 }
 
-const build = gulp.series(Tasks.clean, gulp.parallel(Tasks.compileTypescript, Tasks.copyContent, Tasks.compileLess));
+const copyLibs = gulp.parallel(Tasks.copyBootstrapContent);
 
 // Drop the dist folder...
 gulp.task('clean', Tasks.clean);
 
 // Build with cleaning...
-gulp.task('build', build);
+gulp.task('build', gulp.series(Tasks.clean, gulp.parallel(copyLibs, Tasks.compileTypescript, Tasks.copyContent, Tasks.compileLess)));
 
 gulp.task('run', gulp.series('build', Tasks.run));
 
@@ -98,4 +105,4 @@ gulp.task('watch', gulp.series(Tasks.clean, Tasks.watch));
 gulp.task('help', Tasks.help);
 
 // Default task...
-gulp.task('default', build);
+gulp.task('default', gulp.task('build'));
