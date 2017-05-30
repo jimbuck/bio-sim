@@ -8,7 +8,9 @@
     "removeComments": false,
     "rootDir": "src",
     "outDir": "dist",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": [
     "node_modules",

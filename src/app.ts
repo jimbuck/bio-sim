@@ -1,7 +1,7 @@
 
-// TODO: App framework goes here...
+// TODO: Kickoff the app here...
 
-import { Thing } from './common/index';
+import { Thing } from './common';
 
 console.log(`This is a test!`);
 
