@@ -3,7 +3,8 @@
 const gulp = require('gulp');
 const del = require('del');
 const shell = require('gulp-shell');
-const args = require('yargs').argv;
+const less = require('gulp-less');
+const sourcemaps = require('gulp-sourcemaps');
 
 const packager = require('electron-packager');
 
@@ -15,9 +16,24 @@ class Tasks {
     return del([paths.dist('*'), paths.root('coverage')]);
   }
 
-  static get buildSrc() {
+  static get compileTypescript() {
     // Just run the tsc via command line...   
-    return shell.task(`webpack`);
+    return shell.task(`tsc`);
+  }
+
+  static compileLess() {
+    return gulp.src(paths.src('**/*.less'))
+      .pipe(sourcemaps.init())  
+      .pipe(less({
+        paths: [paths.node_modules('bootstrap/less')]
+      }))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(paths.dist()));
+  }
+
+  static copyContent() {
+    return gulp.src([paths.src('**/*.{png,gif,jpeg,jpg,html}')])
+      .pipe(gulp.dest(paths.dist()));
   }
 
   static get test() {
@@ -62,22 +78,24 @@ Everything you need to know:
   }
 }
 
+const build = gulp.series(Tasks.clean, gulp.parallel(Tasks.compileTypescript, Tasks.copyContent, Tasks.compileLess));
+
 // Drop the dist folder...
 gulp.task('clean', Tasks.clean);
 
 // Build with cleaning...
-gulp.task('build', ['clean'], Tasks.buildSrc);
+gulp.task('build', build);
 
-gulp.task('run', ['build'], Tasks.run);
+gulp.task('run', gulp.series('build', Tasks.run));
 
 // Run the basic `npm test` command after a quick build...
-gulp.task('test', ['build'], Tasks.test);
+gulp.task('test', gulp.series('build', Tasks.test));
 
 // Used for faster development (watch with TAP output) (but also because we now are moving more files around)
-gulp.task('watch', ['clean'], Tasks.watch);
+gulp.task('watch', gulp.series(Tasks.clean, Tasks.watch));
 
 // Prints a simple command breakdown message.
 gulp.task('help', Tasks.help);
 
 // Default task...
-gulp.task('default', ['build']);
+gulp.task('default', build);

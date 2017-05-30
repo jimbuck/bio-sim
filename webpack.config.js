@@ -20,15 +20,6 @@ const baseConfig = {
 	}
 };
 
-const mainConfig = {
-	target: 'electron-main',
-	entry: paths.src('main.ts'),
-	output: {
-		filename: 'main.js',
-		path: paths.dist()
-	}
-};
-
 const appConfig = {
 	target: 'electron-renderer',
 	entry: paths.ui('index.ts'),
@@ -40,4 +31,4 @@ const appConfig = {
 };
 
 
-module.exports = [appConfig, mainConfig].map(config => Object.assign({}, baseConfig, config));
+module.exports = [appConfig].map(config => Object.assign({}, baseConfig, config));

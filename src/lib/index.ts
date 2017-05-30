@@ -7,7 +7,7 @@ export class Thing {
 		this.name = name;
 	}
 
-	public act(): void {
-		console.log(`My name is ${this.name}`);
+	public act(): string {
+		return `My name is ${this.name}`;
 	}
 }

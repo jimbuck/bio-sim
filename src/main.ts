@@ -3,10 +3,6 @@ import * as url from 'url';
 
 import { app, BrowserWindow } from 'electron';
 
-console.log(`
-##########
-${app.getAppPath()}
-##########`);
 
 let win: Electron.BrowserWindow;
 
@@ -14,7 +10,7 @@ function createWindow() {
 	win = new BrowserWindow({ width: 800, height: 600 })
 
 	win.loadURL(url.format({
-		pathname: path.join(app.getAppPath(), 'dist', 'index.html'),
+		pathname: path.join(__dirname, 'index.html'),
 		protocol: 'file:',
 		slashes: true
 	}));

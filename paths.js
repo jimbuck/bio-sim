@@ -8,7 +8,6 @@ const bin = path.join(node_modules, '.bin');
 const src = path.join(root, 'src');
 const dist = path.join(root, 'dist');
 
-const ui = path.join(src, 'ui');
 const lib = path.join(src, 'lib');
 
 function join(root) {
@@ -23,6 +22,5 @@ module.exports = {
 	bin: join(bin),
 	src: join(src),
 	dist: join(dist),
-	ui: join(ui),
 	lib: join(lib)
 };
