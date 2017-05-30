@@ -3,11 +3,12 @@ import * as url from 'url';
 
 import { app, BrowserWindow } from 'electron';
 
-
 let win: Electron.BrowserWindow;
 
 function createWindow() {
 	win = new BrowserWindow({ width: 800, height: 600 })
+
+	win.setMenuBarVisibility(false);
 
 	win.loadURL(url.format({
 		pathname: path.join(__dirname, 'index.html'),

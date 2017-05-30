@@ -1,12 +1,8 @@
 
+// Load libraries and kickoff the app...
+
 import * as $ from 'jquery';
+(window as any)['jQuery'] = (window as any).$ = $;
+import 'bootstrap';
 
-import { Thing } from './common/index';
-
-console.log(`This is a test!`);
-
-const t = new Thing({ name: 'Jim' });
-
-$('body').prepend('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>');
-
-$('<p />').appendTo('#content').text(t.act());
+import './app';
