@@ -1,5 +1,7 @@
 'use strict';
 
+const os = require('os');
+
 const gulp = require('gulp');
 const del = require('del');
 const shell = require('gulp-shell');
@@ -13,7 +15,7 @@ const paths = require('./paths');
 class Tasks {
 
   static clean() {
-    return del([paths.dist('*'), paths.root('coverage')]);
+    return del([paths.dist('*'), paths.root('coverage'), paths.build('*')]);
   }
 
   static get compileTypescript() {
@@ -56,20 +58,23 @@ class Tasks {
   }
 
   static package() {
-    return new Promise((resolve, reject) => {
-      packager({
+    
+    switch (os.platform()) {
+      case 'win32':
+        return pack({
 
-      }, function (err, appPaths) {
-        if (err) {
-          console.log(`Failed to build application!`);
-          return reject(err);
-        }
+        });
+      case 'darwin':
+        return pack({
 
-        console.log(`Application built successfully!`);
-        console.log(appPaths);
-        resolve(appPaths);
-      });
-    });
+        });
+      case 'linux': 
+        return pack({
+
+        });
+    }
+
+    throw new Error(`Platform not supported!`);
   }
 
   // TODO: Update this...  
@@ -85,21 +90,50 @@ Everything you need to know:
   }
 }
 
+function pack(options) {
+
+  options = Object.assign({
+    dir: paths.root(),
+    arch: 'all',
+    asar: true,
+    icon: paths.resources('icon'),
+    out: paths.build(),
+    overwrite: true
+  }, options);
+
+  return new Promise((resolve, reject) => {
+    packager(options, function (err, appPaths) {
+        if (err) {
+          console.log(`Failed to build application!`);
+          return reject(err);
+        }
+
+        console.log(`Application built successfully!`);
+        console.log(appPaths);
+        resolve(appPaths);
+      });
+    });
+}
+
 const copyLibs = gulp.parallel(Tasks.copyBootstrapContent);
 
 // Drop the dist folder...
 gulp.task('clean', Tasks.clean);
 
 // Build with cleaning...
-gulp.task('build', gulp.series(Tasks.clean, gulp.parallel(copyLibs, Tasks.compileTypescript, Tasks.copyContent, Tasks.compileLess)));
+gulp.task('build', gulp.series('clean', gulp.parallel(copyLibs, Tasks.compileTypescript, Tasks.copyContent, Tasks.compileLess)));
 
+// Builds the project and runs it...
 gulp.task('run', gulp.series('build', Tasks.run));
+
+// Builds the project and packages into an installer based on the current platform...
+gulp.task('pack', gulp.series('build', Tasks.package));
 
 // Run the basic `npm test` command after a quick build...
 gulp.task('test', gulp.series('build', Tasks.test));
 
 // Used for faster development (watch with TAP output) (but also because we now are moving more files around)
-gulp.task('watch', gulp.series(Tasks.clean, Tasks.watch));
+gulp.task('watch', gulp.series('clean', Tasks.watch));
 
 // Prints a simple command breakdown message.
 gulp.task('help', Tasks.help);

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "gulp run",
     "clean": "gulp clean",
-    "rebuild": "gulp build",
+    "build": "gulp build",
+    "pack": "gulp pack",
     "watch": "gulp watch",
     "test": "gulp test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",

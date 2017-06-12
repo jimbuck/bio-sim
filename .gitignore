@@ -35,4 +35,5 @@ typings
 
 # Project Specific
 dist
+build
 .nyc_output
