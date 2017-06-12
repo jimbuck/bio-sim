@@ -6,9 +6,9 @@ const node_modules = path.join(root, 'node_modules');
 const bin = path.join(node_modules, '.bin');
 
 const src = path.join(root, 'src');
-const dist = path.join(root, 'dist');
 const resources = path.join(root, 'resources');
 const build = path.join(root, 'build');
+const dist = path.join(root, 'dist');
 
 const lib = path.join(src, 'lib');
 
@@ -24,8 +24,8 @@ module.exports = {
 	node_modules: join(node_modules),
 	bin: join(bin),
 	src: join(src),
-	dist: join(dist),
 	resources: join(resources),
 	build: join(build),
+	dist: join(dist),
 	lib: join(lib)
 };

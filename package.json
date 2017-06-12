@@ -2,7 +2,7 @@
   "name": "bio-sim",
   "version": "0.0.1",
   "description": "An Artificial Life simulator, with procedural terrain, weather, genetics, and other fun stuff.",
-  "main": "dist/main.js",
+  "main": "build/main.js",
   "scripts": {
     "start": "gulp run",
     "clean": "gulp clean",

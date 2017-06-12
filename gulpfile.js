@@ -15,19 +15,19 @@ const paths = require('./paths');
 class Tasks {
 
   static clean() {
-    return del([paths.dist('*'), paths.root('coverage'), paths.build('*')]);
+    return del([paths.build('*'), paths.root('coverage')]);
   }
 
-  static get compileTypescript() {
+  static compileTypescript(done) {
     // Just run the tsc via command line...   
-    return shell.task(`tsc`);
+    return shell.task(`tsc`)(done);
   }
 
   static copyBootstrapContent() {
     return gulp.src([
       paths.node_modules('bootstrap/dist/**/*')
     ])
-      .pipe(gulp.dest(paths.dist('lib/bootstrap')));
+      .pipe(gulp.dest(paths.build('lib/bootstrap')));
   }
 
   static compileLess() {
@@ -37,24 +37,24 @@ class Tasks {
         paths: [paths.node_modules('bootstrap/less')]
       }))
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest(paths.dist()));
+      .pipe(gulp.dest(paths.build()));
   }
 
   static copyContent() {
     return gulp.src([paths.src('**/*.{png,gif,jpeg,jpg,html}')])
-      .pipe(gulp.dest(paths.dist()));
+      .pipe(gulp.dest(paths.build()));
   }
 
-  static get test() {
-    return shell.task(`nyc --color --reporter=text --reporter=lcov -a ava -v`);
+  static test(done) {
+    return shell.task(`nyc --color --reporter=text --reporter=lcov -a ava -v`)(done);
   }
 
   static watch() {
-    return gulp.watch([paths.src + '**/*'], ['test']);
+    return gulp.watch([paths.src('**/*')], ['test']);
   }
 
-  static get run() {
-    return shell.task(`electron .`);
+  static run(done) {
+    return shell.task(`electron .`)(done);
   }
 
   static package() {
@@ -97,7 +97,7 @@ function pack(options) {
     arch: 'all',
     asar: true,
     icon: paths.resources('icon'),
-    out: paths.build(),
+    out: paths.dist(),
     overwrite: true
   }, options);
 
@@ -139,4 +139,4 @@ gulp.task('watch', gulp.series('clean', Tasks.watch));
 gulp.task('help', Tasks.help);
 
 // Default task...
-gulp.task('default', gulp.task('build'));
+gulp.task('default', gulp.series('build'));

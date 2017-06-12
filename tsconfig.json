@@ -7,13 +7,13 @@
     "inlineSourceMap": true,
     "removeComments": false,
     "rootDir": "src",
-    "outDir": "dist",
+    "outDir": "build",
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "temp"
   ]
 }
