@@ -49,6 +49,8 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "electron-debug": "^1.1.0",
+    "electron-unhandled": "^0.2.0",
     "jquery": "^3.2.1"
   },
   "ava": {

@@ -3,6 +3,10 @@ import * as url from 'url';
 
 import { app, BrowserWindow } from 'electron';
 
+require('electron-debug')({ showDevTools: true });
+const unhandled = require('electron-unhandled');
+unhandled();
+
 let win: Electron.BrowserWindow;
 
 function createWindow() {
@@ -15,9 +19,6 @@ function createWindow() {
 		protocol: 'file:',
 		slashes: true
 	}));
-
-	// Open the DevTools.
-	win.webContents.openDevTools();
 
 	// Emitted when the window is closed.
 	win.on('closed', () => {
