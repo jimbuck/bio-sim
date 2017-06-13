@@ -36,6 +36,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/router@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-4.2.2.tgz#2f2d202c92dbe3828d5a3d2fd2c3737c0cb6a587"
+  dependencies:
+    tslib "^1.7.1"
+
 "@paulcbetts/mime-db@~1.22.0":
   version "1.22.4"
   resolved "https://registry.yarnpkg.com/@paulcbetts/mime-db/-/mime-db-1.22.4.tgz#b8ff8e78087a40992990f702f8d9c65499be2ef1"
@@ -1878,7 +1884,7 @@ electron-rebuild@^1.5.7:
     spawn-rx "^2.0.10"
     yargs "^7.0.2"
 
-"electron-sudo@github:malept/electron-sudo#fix-linux-sudo-detection":
+electron-sudo@malept/electron-sudo#fix-linux-sudo-detection:
   version "4.0.12"
   resolved "https://codeload.github.com/malept/electron-sudo/tar.gz/73d135de6f0da7abb7e2b3cee9aa3a1d3fd4e4db"
   dependencies:
@@ -4176,7 +4182,7 @@ rx@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/rx/-/rx-4.1.0.tgz#a5f13ff79ef3b740fe30aa803fb09f98805d4782"
 
-rxjs@^5.1.1:
+rxjs@^5.1.1, rxjs@^5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.0.tgz#a7db14ab157f9d7aac6a56e655e7a3860d39bf26"
   dependencies:
@@ -4241,13 +4247,9 @@ sax@0.5.x:
   version "0.5.8"
   resolved "https://registry.yarnpkg.com/sax/-/sax-0.5.8.tgz#d472db228eb331c2506b0e8c15524adb939d12c1"
 
-sax@1.2.1:
+sax@1.2.1, sax@>=0.6.0, sax@^1.1.4, sax@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
-
-sax@>=0.6.0, sax@^1.1.4, sax@~1.2.1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.2.tgz#fd8631a23bc7826bef5d871bdb87378c95647828"
 
 semver-diff@^2.0.0:
   version "2.1.0"

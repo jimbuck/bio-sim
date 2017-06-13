@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { appRoutes } from './app.routes';
+import { BioSimAppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  imports: [BrowserModule],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+  declarations: [
+    BioSimAppComponent,
+    HomeComponent
+  ],
+  bootstrap: [BioSimAppComponent]
 })
-export class AppModule { }
+export class BioSimAppModule { }

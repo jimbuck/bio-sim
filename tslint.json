@@ -4,7 +4,7 @@
     "eofline": false,
     "align": [true, "parameters"],
     "class-name": true,
-    "indent": [true, "spaces"],
+    "indent": [true, "tab"],
     "max-line-length": [true, 150],
     "no-consecutive-blank-lines": [true],
     "no-trailing-whitespace": true,
