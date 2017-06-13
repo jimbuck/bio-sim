@@ -1,0 +1,69 @@
+{
+  "name": "bio-sim",
+  "productName": "BioSim",
+  "version": "0.0.1",
+  "description": "An Artificial Life simulator, with procedural terrain, weather, organisms, and other fun stuff.",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "lint": "tslint src"
+  },
+  "keywords": [],
+  "author": "Jim Buck <jim@jimmyboh.com>",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {},
+      "electronWinstallerConfig": {
+        "name": "bio_sim"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "JimmyBoh",
+        "name": "bio-sim"
+      },
+      "windowsStoreConfig": {
+        "packageName": "com.jimmyboh.biosim",
+        "name": "BioSim"
+      }
+    }
+  },
+  "dependencies": {
+    "@angular/common": "^4.1.3",
+    "@angular/compiler": "^4.1.3",
+    "@angular/core": "^4.1.3",
+    "@angular/platform-browser": "^4.1.3",
+    "@angular/platform-browser-dynamic": "^4.1.3",
+    "bootstrap": "^3.3.7",
+    "electron-compile": "^6.4.1",
+    "electron-devtools-installer": "^2.0.1",
+    "jquery": "^3.2.1",
+    "reflect-metadata": "^0.1.10",
+    "tslib": "^1.7.1",
+    "zone.js": "^0.8.12"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^3.0.3",
+    "electron-prebuilt-compile": "1.6.11",
+    "tslint": "^4.2.0",
+    "typescript": "~2.3.4"
+  }
+}
